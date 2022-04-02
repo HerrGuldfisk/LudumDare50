@@ -34,11 +34,21 @@ public class PlayerMovement : MonoBehaviour
         {
             if(moveDirection.magnitude != 0)
             {
-                transform.position += (Vector3)moveDirection * moveSpeed * Time.deltaTime;
+                if(runTimer <= 0)
+                {
+                    transform.position += (Vector3)moveDirection * moveSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    transform.position += (Vector3)moveDirection * runSpeed * Time.deltaTime;
+                }
             }
         }
 
-        runTimer -= Time.deltaTime;
+        if(runTimer > 0)
+        {
+            runTimer -= Time.deltaTime;
+        }
     }
 
     public void OnSpace(InputValue value)
