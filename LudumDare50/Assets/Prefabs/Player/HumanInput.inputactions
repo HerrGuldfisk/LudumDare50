@@ -1,0 +1,52 @@
+{
+    "name": "HumanInput",
+    "maps": [
+        {
+            "name": "General",
+            "id": "36b19b96-039d-429f-9970-b096f48cc573",
+            "actions": [
+                {
+                    "name": "Space",
+                    "type": "Button",
+                    "id": "26f44dcc-7fde-4537-838a-bc54df284b61",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "67102dc0-4a48-45b1-9560-e7f8b19bd7a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c9c8669c-3961-4e1d-9213-2e03b4d2e8ab",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Space",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d27cfe0-deb1-4d24-9000-6833b2686f20",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
