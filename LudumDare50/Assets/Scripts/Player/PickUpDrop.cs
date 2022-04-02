@@ -15,7 +15,7 @@ public class PickUpDrop : MonoBehaviour
             if (heldObject != null)
             {
                 heldObject.transform.parent = null;
-                heldObject.GetComponent<Collider2D>().enabled = true;
+                heldObject.GetComponent<WoodDrop>().OnDrop();
                 heldObject = null;
                 return;
             }
@@ -44,8 +44,8 @@ public class PickUpDrop : MonoBehaviour
             if (closest != null)
             {
                 heldObject = closest;
-                heldObject.GetComponent<Collider2D>().enabled = false;
                 heldObject.transform.parent = this.transform;
+                heldObject.transform.position = transform.position;
             }
 
         }
