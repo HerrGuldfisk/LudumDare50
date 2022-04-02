@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public float currentHp;
 
     public float hpDeg = 1.0f;
-    public float hpDRest = 0.1f;
+    public float hpDRest = -5f;
     public float hpDNormal = 1.2f;
     public float hpDRun = 3.5f;
 
@@ -49,6 +49,11 @@ public class PlayerHealth : MonoBehaviour
         if (currentHp <= maxHp)
         {
             currentHp -= hpDeg * 1f;
+        }
+
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
         }
 
         hpDeg = hpDNormal;
