@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wolf
   - Wood
+  - FireplaceDrop
+  - Fire
   layers:
   - Default
   - TransparentFX
