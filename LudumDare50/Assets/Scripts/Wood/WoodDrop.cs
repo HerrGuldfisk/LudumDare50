@@ -4,12 +4,37 @@ using UnityEngine;
 
 public class WoodDrop : MonoBehaviour
 {
+    bool insideFire;
+
+    Fireplace fireplace;
+
+    private void Start()
+    {
+        fireplace = FindObjectOfType<Fireplace>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "FireplaceDrop")
+        if (collision.gameObject.CompareTag("FireplaceDrop"))
         {
-            collision.GetComponent<Fireplace>().AddFireWood(20);
-            Destroy(this.gameObject);
+            insideFire = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("FireplaceDrop"))
+        {
+            insideFire = false;
+        }
+    }
+
+    public void OnDrop()
+    {
+        if (insideFire)
+        {
+            fireplace.AddFireWood(20);
+            Destroy(gameObject);
         }
     }
 }
