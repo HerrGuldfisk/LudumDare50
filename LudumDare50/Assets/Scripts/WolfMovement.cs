@@ -26,6 +26,7 @@ public class WolfMovement : MonoBehaviour
 
     private void Update()
     {
+        if (player == null) return;
 
         float distanceToFire = Vector2.Distance(transform.position, fire.position);
 

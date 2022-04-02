@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    lifeBar bar;
+
     public float maxHp = 100.0f;
     public float currentHp;
 
@@ -15,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHp = maxHp;
         InvokeRepeating("PlayerDegen", 1f, 1f);
+        bar = FindObjectOfType<lifeBar>();
     }
 
     // Update is called once per frame
@@ -25,13 +28,13 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.CompareTag("Light"))
+        if (col.CompareTag("FireplaceDrop"))
         {
             hpDegM = 0.1f;
         }
         else
         {
-            hpDegM = 1f;
+            hpDegM = 10f;
         }
     }
 
@@ -47,7 +50,6 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<PlayerWolfContact>().PlayerDeath();
         }
 
-        Debug.Log("Current HP " + currentHp);
-        Debug.Log("Drain HP");
+        bar.SetLife(currentHp/maxHp);
     }
 }
