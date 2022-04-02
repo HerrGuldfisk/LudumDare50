@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerWolfContact : MonoBehaviour
 {
+    [SerializeField] CanvasGroup deathScreen;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Wolf"))
@@ -13,9 +16,11 @@ public class PlayerWolfContact : MonoBehaviour
         }
     }
 
-    private void PlayerDeath()
+    public void PlayerDeath()
     {
-        /*add death screen connection*/
+        deathScreen.alpha = 1;
+        deathScreen.interactable = true;
+        deathScreen.blocksRaycasts = true;
 
         Destroy(this.gameObject);
     }
