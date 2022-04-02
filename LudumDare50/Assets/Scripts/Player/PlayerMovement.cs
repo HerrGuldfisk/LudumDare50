@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 5f;
 
     public float runTimeEachClick = 0.2f;
-    private float runTimer;
+    public float runTimer;
 
     void Update()
     {

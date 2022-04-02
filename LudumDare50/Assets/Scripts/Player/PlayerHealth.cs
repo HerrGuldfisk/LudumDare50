@@ -9,15 +9,21 @@ public class PlayerHealth : MonoBehaviour
     public float maxHp = 100.0f;
     public float currentHp;
 
-    float hpDeg = 1.0f;
-    float hpDegM = 1.0f;
+    public float hpDeg = 1.0f;
+    public float hpDRest = 0.1f;
+    public float hpDNormal = 1.2f;
+    public float hpDRun = 3.5f;
+
+    PlayerMovement pmScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        pmScript = GetComponent<PlayerMovement>();
+        bar = FindObjectOfType<lifeBar>();
+
         currentHp = maxHp;
         InvokeRepeating("PlayerDegen", 1f, 1f);
-        bar = FindObjectOfType<lifeBar>();
     }
 
     // Update is called once per frame
@@ -28,13 +34,13 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
+        hpDeg = hpDNormal;
         if (col.CompareTag("FireplaceDrop"))
         {
-            hpDegM = 0.1f;
-        }
-        else
-        {
-            hpDegM = 10f;
+            if (col.gameObject.GetComponent<Fireplace>().burning)
+            {
+                hpDeg = hpDRest;
+            }
         }
     }
 
@@ -42,8 +48,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHp <= maxHp)
         {
-            currentHp -= hpDegM * hpDeg;
+            currentHp -= hpDeg * 1f;
         }
+
+        hpDeg = hpDNormal;
 
         if (currentHp < 0.1f)
         {
