@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class WolfMovement : MonoBehaviour
 {
-    [SerializeField] float chaseSpeed = 2;
-    [SerializeField] float patrolSpeed = 1;
-    [SerializeField] float escapeFireSpeed = 1;
-    [SerializeField] float viewDistance = 3;
-    [SerializeField] float timeBetweenDirChange = 1f;
-    [SerializeField] float minDistanceToFire = 3;
-    [SerializeField] float maxDistanceToFire = 6;
+    [SerializeField] float chaseSpeed = 3f;
+    [SerializeField] float patrolSpeed = 0.8f;
+    [SerializeField] float escapeFireSpeed = 1f;
+    [SerializeField] float viewDistance = 3.2f;
+    [SerializeField] float timeBetweenDirChange = 0.8f;
+    [SerializeField] float minDistanceToFire = 3f;
+    [SerializeField] float maxDistanceToFire = 6f;
 
     Transform player;
     Transform fire;
