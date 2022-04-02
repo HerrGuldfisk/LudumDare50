@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerDegen()
     {
-        if (currentHp < maxHp)
+        if (currentHp <= maxHp)
         {
             currentHp -= hpDegM * hpDeg;
         }
@@ -47,6 +47,7 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<PlayerWolfContact>().PlayerDeath();
         }
 
+        Debug.Log("Current HP " + currentHp);
         Debug.Log("Drain HP");
     }
 }
