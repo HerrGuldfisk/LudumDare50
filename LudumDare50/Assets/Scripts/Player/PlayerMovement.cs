@@ -1,28 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Vector3 target;
 
-    public float moveSpeed = 1f;
+    public float moveSpeed = 3f;
+    public float runSpeed = 5f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        target = transform.position;
-    }
+    public float runTimeEachClick = 0.2f;
+    private float runTimer;
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.rightButton.isPressed)
         {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.z = transform.position.z;
+            target = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+            if(runTimer <= 0)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target, runSpeed * Time.deltaTime);
+            }
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+        runTimer -= Time.deltaTime;
+    }
+
+    public void OnSpace(InputValue value)
+    {
+        if(value.Get<float>() == 1)
+        {
+            runTimer = runTimeEachClick;
+        }
     }
 }
