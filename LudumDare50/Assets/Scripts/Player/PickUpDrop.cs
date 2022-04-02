@@ -8,6 +8,13 @@ public class PickUpDrop : MonoBehaviour
 
     GameObject heldObject = null;
 
+    PlayerMovement player;
+
+    private void Start()
+    {
+        player = GetComponent<PlayerMovement>();
+    }
+
     public void OnLeftClick(InputValue value)
     {
         if (value.Get<float>() == 1)
@@ -15,6 +22,13 @@ public class PickUpDrop : MonoBehaviour
             if (heldObject != null)
             {
                 heldObject.transform.parent = null;
+
+                // prepared for player animation
+                // float dropDirection;
+                // dropDirection = player.anim.FlipX ? -0.2f : 0.2f;
+                //heldObject.transform.position += new Vector3(dropDirection, -0.25f, 0);
+
+                heldObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
                 heldObject.GetComponent<WoodDrop>().OnDrop();
                 heldObject = null;
                 return;
@@ -46,6 +60,7 @@ public class PickUpDrop : MonoBehaviour
                 heldObject = closest;
                 heldObject.transform.parent = this.transform;
                 heldObject.transform.position = transform.position;
+                heldObject.GetComponent<SpriteRenderer>().sortingOrder = 100;
             }
 
         }

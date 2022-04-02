@@ -40,7 +40,8 @@ public class Fireplace : MonoBehaviour
         // Burning
         fuel -= factor * Time.deltaTime;
 
-        fuelSlider.value = fuel / maxFuel;
+        // Removed
+        // fuelSlider.value = fuel / maxFuel;
 
         // Checking fuel
         if(fuel <= 0)

@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float runTimeEachClick = 0.2f;
     public float runTimer;
 
+    private Vector2 moveDirection;
+
     void Update()
     {
         if (Mouse.current.rightButton.isPressed)
@@ -28,6 +30,13 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, target, runSpeed * Time.deltaTime);
             }
         }
+        else
+        {
+            if(moveDirection.magnitude != 0)
+            {
+                transform.position += (Vector3)moveDirection * moveSpeed * Time.deltaTime;
+            }
+        }
 
         runTimer -= Time.deltaTime;
     }
@@ -38,5 +47,10 @@ public class PlayerMovement : MonoBehaviour
         {
             runTimer = runTimeEachClick;
         }
+    }
+
+    public void OnMove(InputValue value)
+    {
+        moveDirection = value.Get<Vector2>();
     }
 }
