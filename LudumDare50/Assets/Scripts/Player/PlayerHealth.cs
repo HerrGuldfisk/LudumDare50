@@ -34,10 +34,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        hpDeg = hpDNormal;
+        //hpDeg = hpDNormal;
         if (col.CompareTag("FireplaceDrop"))
         {
-            if (col.gameObject.GetComponent<Fireplace>().burning)
+            if (col.gameObject.GetComponentInParent<Fireplace>().burning)
             {
                 hpDeg = hpDRest;
             }
