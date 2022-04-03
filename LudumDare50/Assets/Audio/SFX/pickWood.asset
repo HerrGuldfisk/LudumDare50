@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abca5e0bd0a6f456b9370e1442a84254, type: 3}
-  m_Name: fireBoost
+  m_Name: pickWood
   m_EditorClassIdentifier: 
-  audioFile: {fileID: 8300000, guid: 23dbaf4dc92c11245b8040f0f6bd52a2, type: 3}
+  audioFile: {fileID: 8300000, guid: 913e814e3907da749bdbb6d1c0ee4179, type: 3}
   audioMixerGroup: {fileID: 4210991230285949445, guid: bd7b2dc0fbdaf4b369733d8630bc3d3f, type: 2}
-  volume: 0.58
+  volume: 1
   pitch: 1
-  spacialBlend: 0.61
+  spacialBlend: 0.49
   loop: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Basics.Audio;
 
 public class WolfMovement : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class WolfMovement : MonoBehaviour
 
         TryGetComponent<WolfCharge>(out wolfCharge);
         TryGetComponent<WolfChase>(out wolfChase);
+
+        GlobalMusicManager.Instance.PlayMusic("wolfHowlGroup", false);
     }
 
     private void Update()
@@ -52,6 +55,7 @@ public class WolfMovement : MonoBehaviour
         }
         else if (Vector2.Distance(transform.position, player.position) < viewDistance)
         {
+            GlobalMusicManager.Instance.PlayMusic("wolfBark", false);
             eyes.color = Color.red;
             if (wolfCharge)
             {
