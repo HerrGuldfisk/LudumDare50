@@ -735,7 +735,6 @@ GameObject:
   m_Component:
   - component: {fileID: 145555534}
   - component: {fileID: 145555533}
-  - component: {fileID: 145555532}
   - component: {fileID: 145555535}
   m_Layer: 0
   m_Name: Main Camera
@@ -744,14 +743,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &145555532
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145555531}
-  m_Enabled: 1
 --- !u!20 &145555533
 Camera:
   m_ObjectHideFlags: 0
@@ -2282,10 +2273,6 @@ PrefabInstance:
       propertyPath: deathScreen
       value: 
       objectReference: {fileID: 321240771}
-    - target: {fileID: 1075893663602899172, guid: 92437e5ef3d8ef24db44ad078e8e9b79, type: 3}
-      propertyPath: hpDRest
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 1075893663602899175, guid: 92437e5ef3d8ef24db44ad078e8e9b79, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3070,6 +3057,26 @@ PrefabInstance:
     - target: {fileID: 1179347728692739941, guid: ee9b0de158c754a44b470f8ca9893cf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870218212369277435, guid: ee9b0de158c754a44b470f8ca9893cf2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870218212369277435, guid: ee9b0de158c754a44b470f8ca9893cf2, type: 3}
+      propertyPath: MaxDistance
+      value: 2.5713978
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870218212369277435, guid: ee9b0de158c754a44b470f8ca9893cf2, type: 3}
+      propertyPath: MinDistance
+      value: 0.9047564
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870218212369277435, guid: ee9b0de158c754a44b470f8ca9893cf2, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870218212369277435, guid: ee9b0de158c754a44b470f8ca9893cf2, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0.7361111
       objectReference: {fileID: 0}
     - target: {fileID: 3769438781707250191, guid: ee9b0de158c754a44b470f8ca9893cf2, type: 3}
       propertyPath: m_Name
@@ -7393,6 +7400,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2327948647144029845, guid: ed3e49574b6773143bd38eb55cdf9c78, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327948647144029845, guid: ed3e49574b6773143bd38eb55cdf9c78, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d5cd32e5322355c49bec8ae8086b5376, type: 3}
+    - target: {fileID: 2327948647144029845, guid: ed3e49574b6773143bd38eb55cdf9c78, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8508969527786409311, guid: ed3e49574b6773143bd38eb55cdf9c78, type: 3}
       propertyPath: m_Name
       value: LifeMeter
@@ -7724,7 +7743,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: dc53923533236054592bf79f60c8f69f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
