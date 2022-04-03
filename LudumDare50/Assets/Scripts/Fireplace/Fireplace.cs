@@ -50,7 +50,7 @@ public class Fireplace : MonoBehaviour
 
         burnIndicator.transform.localScale = new Vector3(indicatorSize, indicatorSize, 1);
 
-        float fireSize = 0.3f + 1.5f * (fuel / maxFuel);
+        float fireSize = 0.3f + 0.7f * (fuel / maxFuel);
         fireObject.transform.localScale = new Vector3(fireSize, fireSize, 1);
         // Removed
         // fuelSlider.value = fuel / maxFuel;
@@ -69,7 +69,13 @@ public class Fireplace : MonoBehaviour
     public void AddFireWood(float amount)
     {
         GlobalMusicManager.Instance.PlayMusic("fireBoost", false);
-        fuel += amount;
-        Mathf.Clamp(fuel, 0, maxFuel);
+        if(fuel + amount <= maxFuel)
+        {
+            fuel += amount;
+        }
+        else
+        {
+            fuel = maxFuel;
+        }
     }
 }

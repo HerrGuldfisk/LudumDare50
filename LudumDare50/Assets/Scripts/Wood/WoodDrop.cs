@@ -37,6 +37,7 @@ public class WoodDrop : MonoBehaviour
         if (insideFire)
         {
             fireplace.AddFireWood(20);
+            GetComponentInParent<WoodSpawnerManager>().currentLogs--;
             Destroy(gameObject);
         }
     }
