@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer outline;
+    [SerializeField] Color dmgOutlineColor;
+    [SerializeField] Color regOutlineColor;
     lifeBar bar;
 
     public float maxHp = 100.0f;
@@ -17,7 +20,6 @@ public class PlayerHealth : MonoBehaviour
 
     PlayerMovement pmScript;
 
-    // Start is called before the first frame update
     void Start()
     {
         pmScript = GetComponent<PlayerMovement>();
@@ -25,23 +27,31 @@ public class PlayerHealth : MonoBehaviour
 
         currentHp = maxHp;
         InvokeRepeating("PlayerDegen", 1f, 1f);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        TurnOffOutline();
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        //hpDeg = hpDNormal;
         if (col.CompareTag("FireplaceDrop"))
         {
             if (col.gameObject.GetComponentInParent<Fireplace>().burning)
             {
                 hpDeg = hpDRest;
+                outline.color = regOutlineColor;
             }
+            else
+            {
+                outline.color = dmgOutlineColor;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("FireplaceDrop"))
+        {
+            outline.color = dmgOutlineColor;
         }
     }
 
@@ -64,6 +74,15 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<PlayerWolfContact>().PlayerDeath();
         }
 
-        bar.SetLife(currentHp/maxHp);
+        bar.SetLife(currentHp / maxHp);
+
+        //outlineblink
+        outline.enabled = true;
+        Invoke("TurnOffOutline", 0.3f);
+    }
+
+    void TurnOffOutline()
+    {
+        outline.enabled = false;
     }
 }
