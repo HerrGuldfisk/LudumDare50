@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public float dashLen = 0.05f;
     public float dashCooldown = 1.0f;
 
+    public float maxDashCount = 1f;
+    public float dashCount;
+
     private float dashTimer;
     private float dashCooldownTimer;
 
@@ -25,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         currentMoveSpeed = moveSpeed;
+
+        dashCount = maxDashCount;
     }
 
     void Update()
@@ -70,11 +75,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.Get<float>() == 1)
         {
-            if (dashTimer <= 0 && dashCooldownTimer <= 0)
+            if (dashCount > 0)
             {
-                currentMoveSpeed = dashSpeed;
-                GetComponent<PlayerHealth>().PlayerDashLoss();
-                dashTimer = dashLen;
+                if (dashTimer <= 0 && dashCooldownTimer <= 0)
+                {
+                    dashCount -= 1;
+                    currentMoveSpeed = dashSpeed;
+                    GetComponent<PlayerHealth>().PlayerDashLoss();
+                    dashTimer = dashLen;
+                }
             }
         }
     }
