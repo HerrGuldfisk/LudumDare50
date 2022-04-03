@@ -12,11 +12,13 @@ public class PlayerHealth : MonoBehaviour
     public float maxHp = 100.0f;
     public float currentHp;
 
-    public float hpRate = 1.4f;
+    public float hpRate = 2f;
     public float hpDeg = 1.0f;
     public float hpDRest = -5f;
     public float hpDNormal = 1.2f;
-    public float hpDRun = 3.5f;
+    public float hpDashLoss = 5f;
+
+    bool inHeat = false;
 
     PlayerMovement pmScript;
 
@@ -33,15 +35,16 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.CompareTag("FireplaceDrop"))
+        if (col.CompareTag("HeatZone"))
         {
             if (col.gameObject.GetComponentInParent<Fireplace>().burning)
             {
-                hpDeg = hpDRest;
+                inHeat = true;
                 outline.color = regOutlineColor;
             }
             else
             {
+                inHeat = false;
                 outline.color = dmgOutlineColor;
             }
         }
@@ -49,14 +52,18 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("FireplaceDrop"))
+        if (other.CompareTag("HeatZone"))
         {
+            inHeat = false;
             outline.color = dmgOutlineColor;
         }
     }
 
     void PlayerDegen()
     {
+        hpDeg = hpDNormal;
+        CheckPlayerState();
+
         if (currentHp <= maxHp)
         {
             currentHp -= hpDeg * hpRate;
@@ -67,7 +74,29 @@ public class PlayerHealth : MonoBehaviour
             currentHp = maxHp;
         }
 
-        hpDeg = hpDNormal;
+        if (currentHp < 0.1f)
+        {
+            GetComponent<PlayerWolfContact>().PlayerDeath();
+        }
+
+        bar.SetLife(currentHp / maxHp);
+
+        //outlineblink
+        outline.enabled = true;
+        Invoke("TurnOffOutline", 0.3f);
+    }
+
+    void CheckPlayerState()
+    {
+        if (inHeat)
+        {
+            hpDeg = hpDRest;
+        }
+    }
+
+    public void PlayerDashLoss()
+    {
+        currentHp -= hpDashLoss;
 
         if (currentHp < 0.1f)
         {

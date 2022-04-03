@@ -7,13 +7,25 @@ public class PlayerMovement : MonoBehaviour
 {
     private Vector3 target;
 
+    public float currentMoveSpeed;
     public float moveSpeed = 3f;
     public float runSpeed = 5f;
+    public float dashSpeed = 18f;
 
-    public float runTimeEachClick = 0.2f;
+    public float dashLen = 0.05f;
+    public float dashCooldown = 1.0f;
+
+    private float dashTimer;
+    private float dashCooldownTimer;
+
     public float runTimer;
 
     private Vector2 moveDirection;
+
+    private void Start()
+    {
+        currentMoveSpeed = moveSpeed;
+    }
 
     void Update()
     {
@@ -23,11 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
             if(runTimer <= 0)
             {
-                transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.position = Vector2.MoveTowards(transform.position, target, runSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, target, currentMoveSpeed * Time.deltaTime);
             }
         }
         else
@@ -36,26 +44,38 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(runTimer <= 0)
                 {
-                    transform.position += (Vector3)moveDirection * moveSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    transform.position += (Vector3)moveDirection * runSpeed * Time.deltaTime;
+                    transform.position += (Vector3)moveDirection * currentMoveSpeed * Time.deltaTime;
                 }
             }
         }
 
-        if(runTimer > 0)
+        if (dashTimer > 0)
         {
-            runTimer -= Time.deltaTime;
+            dashTimer -= Time.deltaTime;
+
+            if (dashTimer <= 0)
+            {
+                currentMoveSpeed = moveSpeed;
+                dashCooldownTimer = dashCooldown;
+            }
+        }
+
+        if (dashCooldownTimer > 0)
+        {
+            dashCooldownTimer -= Time.deltaTime;
         }
     }
 
     public void OnSpace(InputValue value)
     {
-        if(value.Get<float>() == 1)
+        if (value.Get<float>() == 1)
         {
-            runTimer = runTimeEachClick;
+            if (dashTimer <= 0 && dashCooldownTimer <= 0)
+            {
+                currentMoveSpeed = dashSpeed;
+                GetComponent<PlayerHealth>().PlayerDashLoss();
+                dashTimer = dashLen;
+            }
         }
     }
 
