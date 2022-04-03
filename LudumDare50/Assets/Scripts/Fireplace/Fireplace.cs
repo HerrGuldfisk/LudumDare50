@@ -14,7 +14,7 @@ public class Fireplace : MonoBehaviour
 
     [Header("Fire Data")]
     public float factor = 1;
-    
+
     public float fuel = 0;
 
     public float maxFuel = 100f;
@@ -22,18 +22,20 @@ public class Fireplace : MonoBehaviour
     public bool burning;
 
     public float burningSizeFactor = 7;
+    PlayerHealth playerHealth;
 
 
     void Start()
     {
         // anim.Play("Burning");
+        playerHealth = FindObjectOfType<PlayerHealth>();
     }
 
 
     void Update()
     {
         // Don't update if no fuel.
-        if(fuel <= 0) { return; }
+        if (fuel <= 0) { return; }
 
         // Starting burn animation.
         if (!burning)
@@ -56,7 +58,7 @@ public class Fireplace : MonoBehaviour
         // fuelSlider.value = fuel / maxFuel;
 
         // Checking fuel
-        if(fuel <= 0)
+        if (fuel <= 0)
         {
             fuel = 0;
             burning = false;
@@ -64,12 +66,13 @@ public class Fireplace : MonoBehaviour
             anim.Play("Idle");
         }
 
+        TrySetPlayerHP();
     }
 
     public void AddFireWood(float amount)
     {
         GlobalMusicManager.Instance.PlayMusic("fireBoost", false);
-        if(fuel + amount <= maxFuel)
+        if (fuel + amount <= maxFuel)
         {
             fuel += amount;
         }
@@ -77,5 +80,12 @@ public class Fireplace : MonoBehaviour
         {
             fuel = maxFuel;
         }
+
+        TrySetPlayerHP();
+    }
+
+    private void TrySetPlayerHP()
+    {
+        if (playerHealth) playerHealth.SetPlayerMaxHP((fuel/maxFuel) * 100);
     }
 }

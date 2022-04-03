@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] SpriteRenderer outline;
     [SerializeField] Color dmgOutlineColor;
     [SerializeField] Color regOutlineColor;
-    lifeBar bar;
+    lifeBar barFill;
+    RectTransform bar;
+    [SerializeField] float barMaxWidth = 300f;
 
     public float maxHp = 100.0f;
     public float currentHp;
@@ -25,7 +28,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         pmScript = GetComponent<PlayerMovement>();
-        bar = FindObjectOfType<lifeBar>();
+        barFill = FindObjectOfType<lifeBar>();
+        bar = GameObject.FindGameObjectWithTag("LifeMeter").GetComponent<RectTransform>();
 
         currentHp = maxHp;
         InvokeRepeating("PlayerDegen", 1f, 1f);
@@ -79,7 +83,7 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<PlayerWolfContact>().PlayerDeath();
         }
 
-        bar.SetLife(currentHp / maxHp);
+        barFill.SetLife(currentHp / maxHp);
 
         //outlineblink
         outline.enabled = true;
@@ -103,7 +107,7 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<PlayerWolfContact>().PlayerDeath();
         }
 
-        bar.SetLife(currentHp / maxHp);
+        barFill.SetLife(currentHp / maxHp);
 
         //outlineblink
         outline.enabled = true;
@@ -113,5 +117,13 @@ public class PlayerHealth : MonoBehaviour
     void TurnOffOutline()
     {
         outline.enabled = false;
+    }
+
+    public void SetPlayerMaxHP(float value)
+    {
+        float currentHealthPerc = currentHp/maxHp;
+        maxHp = Mathf.Clamp(value, 20, 100);
+        currentHp = maxHp*currentHealthPerc;
+        bar.sizeDelta = new Vector2((maxHp/100) * barMaxWidth, bar.sizeDelta.y);
     }
 }
