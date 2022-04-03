@@ -15,7 +15,7 @@ public class WoodDrop : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("FireplaceDrop"))
+        if (collision.gameObject.CompareTag("HeatZone"))
         {
             insideFire = true;
         }
@@ -23,7 +23,7 @@ public class WoodDrop : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("FireplaceDrop"))
+        if (collision.gameObject.CompareTag("HeatZone"))
         {
             insideFire = false;
         }
