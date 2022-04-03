@@ -30,8 +30,6 @@ public class WolfMovement : MonoBehaviour
 
         TryGetComponent<WolfCharge>(out wolfCharge);
         TryGetComponent<WolfChase>(out wolfChase);
-
-        GlobalMusicManager.Instance.PlayMusic("wolfHowlGroup", false);
     }
 
     private void Update()

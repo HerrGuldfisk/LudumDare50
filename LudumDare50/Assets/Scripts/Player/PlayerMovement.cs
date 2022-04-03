@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Basics.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        GlobalMusicManager.Instance.PlayMusic("wolfHowlGroup", false);
+
         currentMoveSpeed = moveSpeed;
 
         dashCount = maxDashCount;

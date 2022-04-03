@@ -54,6 +54,14 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("HeatZone"))
+        {
+            pmScript.dashCount = pmScript.maxDashCount;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("HeatZone"))

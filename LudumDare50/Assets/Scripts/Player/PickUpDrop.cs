@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Basics.Audio;
 
 public class PickUpDrop : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class PickUpDrop : MonoBehaviour
         {
             if (heldObject != null)
             {
+                GlobalMusicManager.Instance.PlayMusic("dropWood", false);
                 DropObject();
                 return;
             }
@@ -81,6 +83,7 @@ public class PickUpDrop : MonoBehaviour
         {
             if (canPickUp)
             {
+                GlobalMusicManager.Instance.PlayMusic("pickWood", false);
                 heldObject = canPickUp;
                 heldObject.GetComponent<SpriteRenderer>().sortingOrder = 100;
                 heldObject.GetComponent<SetOutline>().ToggleOutline(false);

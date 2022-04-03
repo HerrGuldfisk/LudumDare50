@@ -72,9 +72,11 @@ public class Fireplace : MonoBehaviour
     public void AddFireWood(float amount)
     {
         GlobalMusicManager.Instance.PlayMusic("fireBoost", false);
+
         if (fuel + amount <= maxFuel)
         {
             fuel += amount;
+            FindObjectOfType<PlayerMovement>().maxDashCount += 1;
         }
         else
         {
