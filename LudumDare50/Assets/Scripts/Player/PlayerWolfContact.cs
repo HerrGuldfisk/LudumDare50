@@ -7,11 +7,10 @@ public class PlayerWolfContact : MonoBehaviour
 {
     [SerializeField] CanvasGroup deathScreen;
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (col.CompareTag("Wolf"))
+        if (other.transform.CompareTag("Wolf"))
         {
-            //Debug.Log("Collision with " + " " + col.name);
             PlayerDeath();
         }
     }
