@@ -9,6 +9,7 @@ public class WolfMovement : MonoBehaviour
     [SerializeField] float viewDistance = 3.2f;
     [SerializeField] float timeBetweenDirChange = 0.8f;
     [SerializeField] float fireEscapeTime = 2f;
+    [SerializeField] SpriteRenderer eyes;
 
     Transform player;
     Transform fire;
@@ -37,18 +38,21 @@ public class WolfMovement : MonoBehaviour
 
         if (inFireRange && !escapeFire)
         {
+            eyes.color = Color.white;
             escapeFire = true;
             fireEscapeTimer = fireEscapeTime;
             RotateTowards(transform.position + (transform.position - fire.position));
         }
         else if (escapeFire)
         {
+            eyes.color = Color.white;
             MoveForward(escapeFireSpeed);
             fireEscapeTimer -= Time.deltaTime;
             if (fireEscapeTimer < 0) escapeFire = false;
         }
         else if (Vector2.Distance(transform.position, player.position) < viewDistance)
         {
+            eyes.color = Color.red;
             if (wolfCharge)
             {
                 wolfCharge.AttackMode();
@@ -60,6 +64,7 @@ public class WolfMovement : MonoBehaviour
         }
         else
         {
+            eyes.color = Color.white;
             patrolTimer -= Time.deltaTime;
 
             if (patrolTimer < 0)
