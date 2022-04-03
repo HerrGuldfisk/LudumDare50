@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WolfMovement : MonoBehaviour
 {
-    [SerializeField] float chaseSpeed = 3f;
     [SerializeField] float patrolSpeed = 0.8f;
     [SerializeField] float escapeFireSpeed = 1f;
     [SerializeField] float viewDistance = 3.2f;
@@ -18,11 +17,17 @@ public class WolfMovement : MonoBehaviour
     bool inFireRange = false;
     float fireEscapeTimer = 0;
 
+    WolfCharge wolfCharge;
+    WolfChase wolfChase;
+
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         fire = GameObject.FindGameObjectWithTag("Fire").transform;
+
+        TryGetComponent<WolfCharge>(out wolfCharge);
+        TryGetComponent<WolfChase>(out wolfChase);
     }
 
     private void Update()
@@ -44,8 +49,14 @@ public class WolfMovement : MonoBehaviour
         }
         else if (Vector2.Distance(transform.position, player.position) < viewDistance)
         {
-            RotateTowards(player.position);
-            MoveForward(chaseSpeed);
+            if (wolfCharge)
+            {
+                wolfCharge.AttackMode();
+            }
+            else if (wolfChase)
+            {
+                wolfChase.AttackMode(player.position);
+            }
         }
         else
         {
@@ -81,7 +92,7 @@ public class WolfMovement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "FireplaceDrop")
+        if (other.tag == "HeatZone")
         {
             if (other.GetComponentInParent<Fireplace>().burning)
             {
@@ -96,7 +107,7 @@ public class WolfMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "FireplaceDrop")
+        if (other.tag == "HeatZone")
         {
             inFireRange = false;
         }
