@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abca5e0bd0a6f456b9370e1442a84254, type: 3}
+  m_Name: fireBoost
+  m_EditorClassIdentifier: 
+  audioFile: {fileID: 8300000, guid: 4a6fe56a3211bff4fad6c0264000cb34, type: 3}
+  audioMixerGroup: {fileID: 4210991230285949445, guid: bd7b2dc0fbdaf4b369733d8630bc3d3f, type: 2}
+  volume: 0.58
+  pitch: 1
+  spacialBlend: 0.41
+  loop: 0

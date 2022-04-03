@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Basics.Audio;
 
 public class Fireplace : MonoBehaviour
 {
@@ -67,6 +68,7 @@ public class Fireplace : MonoBehaviour
 
     public void AddFireWood(float amount)
     {
+        GlobalMusicManager.Instance.PlayMusic("fireBoost", false);
         fuel += amount;
         Mathf.Clamp(fuel, 0, maxFuel);
     }
