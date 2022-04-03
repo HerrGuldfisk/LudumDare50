@@ -10,6 +10,8 @@ public class PickUpDrop : MonoBehaviour
     List<GameObject> inRange = new List<GameObject>();
     GameObject canPickUp = null;
 
+    public GameObject globalWoodContainer;
+
     PlayerMovement player;
     Vector2 heldObjectOffset = Vector2.zero;
 
