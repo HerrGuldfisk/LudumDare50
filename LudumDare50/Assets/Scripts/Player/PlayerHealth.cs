@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         pmScript = GetComponent<PlayerMovement>();
+
         barFill = FindObjectOfType<lifeBar>();
         bar = GameObject.FindGameObjectWithTag("LifeMeter").GetComponent<RectTransform>();
 
@@ -44,6 +45,8 @@ public class PlayerHealth : MonoBehaviour
             if (col.gameObject.GetComponentInParent<Fireplace>().burning)
             {
                 pmScript.dashCount = pmScript.maxDashCount;
+                pmScript.UpdateDash();
+
                 inHeat = true;
                 outline.color = regOutlineColor;
             }
@@ -60,6 +63,7 @@ public class PlayerHealth : MonoBehaviour
         if (col.CompareTag("HeatZone"))
         {
             pmScript.dashCount = pmScript.maxDashCount;
+            pmScript.UpdateDash();
         }
     }
 
@@ -68,6 +72,8 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("HeatZone"))
         {
             pmScript.dashCount = pmScript.maxDashCount;
+            pmScript.UpdateDash();
+
             inHeat = false;
             outline.color = dmgOutlineColor;
         }

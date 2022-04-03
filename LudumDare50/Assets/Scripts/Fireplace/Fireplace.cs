@@ -21,14 +21,18 @@ public class Fireplace : MonoBehaviour
 
     public bool burning;
 
+    private float nextDash = 0f;
+    private float untilNextDash = 3f;
+
     public float burningSizeFactor = 7;
     PlayerHealth playerHealth;
-
+    PlayerMovement playerMovement;
 
     void Start()
     {
         // anim.Play("Burning");
         playerHealth = FindObjectOfType<PlayerHealth>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
 
@@ -76,7 +80,6 @@ public class Fireplace : MonoBehaviour
         if (fuel + amount <= maxFuel)
         {
             fuel += amount;
-            FindObjectOfType<PlayerMovement>().maxDashCount += 1;
         }
         else
         {
@@ -84,10 +87,24 @@ public class Fireplace : MonoBehaviour
         }
 
         TrySetPlayerHP();
+        AddDash();
     }
 
     private void TrySetPlayerHP()
     {
         if (playerHealth) playerHealth.SetPlayerMaxHP((fuel/maxFuel) * 100);
+    }
+
+    private void AddDash()
+    {
+        nextDash += 1;
+        Debug.Log(nextDash);
+        if (nextDash >= untilNextDash)
+        {
+            Debug.Log(nextDash);
+            nextDash = 0;
+            playerMovement.maxDashCount += 1;
+            playerMovement.bar.sizeDelta = new Vector2(playerMovement.maxDashCount * playerMovement.bar.sizeDelta.y / 2, playerMovement.bar.sizeDelta.y);
+        }
     }
 }

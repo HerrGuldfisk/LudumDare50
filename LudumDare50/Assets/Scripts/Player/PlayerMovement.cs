@@ -6,6 +6,9 @@ using Basics.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public dashBar dashFill;
+    public RectTransform bar;
+
     private Vector3 target;
 
     public float currentMoveSpeed;
@@ -33,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
         currentMoveSpeed = moveSpeed;
 
         dashCount = maxDashCount;
+
+        dashFill = FindObjectOfType<dashBar>();
+        bar = GameObject.FindGameObjectWithTag("DashMeter").GetComponent<RectTransform>();
     }
 
     void Update()
@@ -84,15 +90,21 @@ public class PlayerMovement : MonoBehaviour
                 {
                     dashCount -= 1;
                     currentMoveSpeed = dashSpeed;
-                    GetComponent<PlayerHealth>().PlayerDashLoss();
+                    //GetComponent<PlayerHealth>().PlayerDashLoss();
                     dashTimer = dashLen;
                 }
             }
         }
+        UpdateDash();
     }
 
     public void OnMove(InputValue value)
     {
         moveDirection = value.Get<Vector2>();
+    }
+
+    public void UpdateDash()
+    {
+        dashFill.SetDash(dashCount / maxDashCount);
     }
 }
