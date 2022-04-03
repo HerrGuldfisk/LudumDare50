@@ -8,13 +8,14 @@ public class Fireplace : MonoBehaviour
     [Header("Components")]
     public Animator anim;
     public Slider fuelSlider;
+    public SpriteRenderer burnIndicator;
 
     [Header("Fire Data")]
     public float factor = 1;
     
     public float fuel = 0;
 
-    public float maxFuel = 60f;
+    public float maxFuel = 100f;
 
     public bool burning;
 
@@ -34,6 +35,7 @@ public class Fireplace : MonoBehaviour
         if (!burning)
         {
             anim.Play("Burning");
+            burnIndicator.enabled = true;
             burning = true;
         }
 
@@ -48,6 +50,7 @@ public class Fireplace : MonoBehaviour
         {
             fuel = 0;
             burning = false;
+            burnIndicator.enabled = false;
             anim.Play("Idle");
         }
 
