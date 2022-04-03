@@ -8,6 +8,7 @@ public class Fireplace : MonoBehaviour
     [Header("Components")]
     public Animator anim;
     public Slider fuelSlider;
+    public GameObject fireObject;
     public SpriteRenderer burnIndicator;
 
     [Header("Fire Data")]
@@ -47,6 +48,9 @@ public class Fireplace : MonoBehaviour
         float indicatorSize = 3 + burningSizeFactor * (fuel / maxFuel);
 
         burnIndicator.transform.localScale = new Vector3(indicatorSize, indicatorSize, 1);
+
+        float fireSize = 0.3f + 1.5f * (fuel / maxFuel);
+        fireObject.transform.localScale = new Vector3(fireSize, fireSize, 1);
         // Removed
         // fuelSlider.value = fuel / maxFuel;
 
