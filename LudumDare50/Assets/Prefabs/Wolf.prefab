@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.33962262, g: 0.20058264, b: 0.055749357, a: 1}
+  m_Color: {r: 0.3679245, g: 0.32923967, b: 0.28948024, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490eae9221a3c2843b39dd8b82969574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 4
+  chaseSpeed: 5
   patrolSpeed: 1
   escapeFireSpeed: 4
   viewDistance: 6.37
