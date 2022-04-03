@@ -19,6 +19,8 @@ public class Fireplace : MonoBehaviour
 
     public bool burning;
 
+    public float burningSizeFactor = 7;
+
 
     void Start()
     {
@@ -42,6 +44,9 @@ public class Fireplace : MonoBehaviour
         // Burning
         fuel -= factor * Time.deltaTime;
 
+        float indicatorSize = 3 + burningSizeFactor * (fuel / maxFuel);
+
+        burnIndicator.transform.localScale = new Vector3(indicatorSize, indicatorSize, 1);
         // Removed
         // fuelSlider.value = fuel / maxFuel;
 
