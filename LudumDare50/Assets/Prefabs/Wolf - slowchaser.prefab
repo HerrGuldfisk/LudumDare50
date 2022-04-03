@@ -45,7 +45,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 1.06}
   m_Direction: 0
 --- !u!1 &8775697688513707954
 GameObject:
@@ -77,7 +77,7 @@ Transform:
   m_GameObject: {fileID: 8775697688513707954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.72875, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children:
   - {fileID: 7829466167905833087}
   m_Father: {fileID: 0}
@@ -124,8 +124,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.3679245, g: 0.32923967, b: 0.28948024, a: 1}
+  m_Sprite: {fileID: 21300000, guid: eb1348a33d55254489da23558b049f16, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490eae9221a3c2843b39dd8b82969574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 2
   patrolSpeed: 1
   escapeFireSpeed: 4
   viewDistance: 6.37
@@ -202,3 +201,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b38d001a89e904d90cc88c7d9fae16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chaseSpeed: 2
