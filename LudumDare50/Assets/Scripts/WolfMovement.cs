@@ -9,13 +9,14 @@ public class WolfMovement : MonoBehaviour
     [SerializeField] float escapeFireSpeed = 1f;
     [SerializeField] float viewDistance = 3.2f;
     [SerializeField] float timeBetweenDirChange = 0.8f;
-    [SerializeField] float minDistanceToFire = 3f;
-    [SerializeField] float maxDistanceToFire = 6f;
+    [SerializeField] float fireEscapeTime = 2f;
 
     Transform player;
     Transform fire;
     float patrolTimer = 0;
     bool escapeFire = false;
+    bool inFireRange = false;
+    float fireEscapeTimer = 0;
 
 
     private void Start()
@@ -28,18 +29,18 @@ public class WolfMovement : MonoBehaviour
     {
         if (player == null) return;
 
-        float distanceToFire = Vector2.Distance(transform.position, fire.position);
 
-        if (distanceToFire < minDistanceToFire && !escapeFire)
+        if (inFireRange && !escapeFire)
         {
             escapeFire = true;
+            fireEscapeTimer = fireEscapeTime;
             RotateTowards(transform.position + (transform.position - fire.position));
         }
         else if (escapeFire)
         {
             MoveForward(escapeFireSpeed);
-
-            if (distanceToFire > maxDistanceToFire) escapeFire = false;
+            fireEscapeTimer -= Time.deltaTime;
+            if (fireEscapeTimer < 0) escapeFire = false;
         }
         else if (Vector2.Distance(transform.position, player.position) < viewDistance)
         {
@@ -76,8 +77,28 @@ public class WolfMovement : MonoBehaviour
     {
         Gizmos.DrawWireSphere(transform.position, viewDistance);
         Gizmos.color = Color.red;
+    }
 
-        Gizmos.DrawWireSphere(transform.position, minDistanceToFire);
-        Gizmos.DrawWireSphere(transform.position, maxDistanceToFire);
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "FireplaceDrop")
+        {
+            if (other.GetComponentInParent<Fireplace>().burning)
+            {
+                inFireRange = true;
+            }
+            else
+            {
+                inFireRange = false;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "FireplaceDrop")
+        {
+            inFireRange = false;
+        }
     }
 }
