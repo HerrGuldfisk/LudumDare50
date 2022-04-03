@@ -43,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (col.gameObject.GetComponentInParent<Fireplace>().burning)
             {
+                pmScript.dashCount = pmScript.maxDashCount;
                 inHeat = true;
                 outline.color = regOutlineColor;
             }
@@ -66,6 +67,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.CompareTag("HeatZone"))
         {
+            pmScript.dashCount = pmScript.maxDashCount;
             inHeat = false;
             outline.color = dmgOutlineColor;
         }

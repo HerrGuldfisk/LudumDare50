@@ -18,6 +18,7 @@ public class WolfMovement : MonoBehaviour
     bool escapeFire = false;
     bool inFireRange = false;
     float fireEscapeTimer = 0;
+    bool barking;
 
     WolfCharge wolfCharge;
     WolfChase wolfChase;
@@ -39,6 +40,7 @@ public class WolfMovement : MonoBehaviour
 
         if (inFireRange && !escapeFire)
         {
+            barking = false;
             eyes.color = Color.white;
             escapeFire = true;
             fireEscapeTimer = fireEscapeTime;
@@ -46,6 +48,7 @@ public class WolfMovement : MonoBehaviour
         }
         else if (escapeFire)
         {
+            barking = false;
             eyes.color = Color.white;
             MoveForward(escapeFireSpeed);
             fireEscapeTimer -= Time.deltaTime;
@@ -53,7 +56,12 @@ public class WolfMovement : MonoBehaviour
         }
         else if (Vector2.Distance(transform.position, player.position) < viewDistance)
         {
-            GlobalMusicManager.Instance.PlayMusic("wolfBark", false);
+            if (!barking)
+            {
+                barking = true;
+                GlobalMusicManager.Instance.PlayMusic("wolfBark", false);
+            }
+
             eyes.color = Color.red;
             if (wolfCharge)
             {

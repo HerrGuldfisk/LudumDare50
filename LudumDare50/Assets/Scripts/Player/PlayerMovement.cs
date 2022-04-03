@@ -11,10 +11,10 @@ public class PlayerMovement : MonoBehaviour
     public float currentMoveSpeed;
     public float moveSpeed = 3f;
     public float runSpeed = 5f;
-    public float dashSpeed = 18f;
+    public float dashSpeed = 12f;
 
-    public float dashLen = 0.05f;
-    public float dashCooldown = 1.0f;
+    public float dashLen = 0.15f;
+    public float dashCooldown = 0.12f;
 
     public float maxDashCount = 1f;
     public float dashCount;
