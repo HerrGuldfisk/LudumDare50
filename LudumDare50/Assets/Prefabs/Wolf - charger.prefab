@@ -124,7 +124,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 1712329848}
   - component: {fileID: 1712329847}
   - component: {fileID: 3288839817485535245}
+  - component: {fileID: 8103185017128534838}
   m_Layer: 0
   m_Name: Wolf - charger
   m_TagString: Wolf
@@ -289,3 +290,15 @@ MonoBehaviour:
   waitTime: 1
   chargeTime: 1
   chargeSpeed: 9
+--- !u!114 &8103185017128534838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8775697688513707954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c45c82e79a7de44b55c90fedd7dde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
