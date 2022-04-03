@@ -13,17 +13,20 @@ public class WoodDrop : MonoBehaviour
         fireplace = FindObjectOfType<Fireplace>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("HeatZone"))
+        if (collision.gameObject.CompareTag("FireplaceDrop"))
         {
-            insideFire = true;
+            if(Vector3.Distance(collision.transform.position, transform.position) < 1.5f)
+            {
+                insideFire = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("HeatZone"))
+        if (collision.gameObject.CompareTag("FireplaceDrop"))
         {
             insideFire = false;
         }
