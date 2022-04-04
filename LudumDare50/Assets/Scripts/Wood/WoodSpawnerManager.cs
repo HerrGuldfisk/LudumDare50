@@ -22,7 +22,7 @@ public class WoodSpawnerManager : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
 
-        if(currentLogs < 100)
+        if(currentLogs < 105)
         {
             SpawnWood();
         }
@@ -31,19 +31,8 @@ public class WoodSpawnerManager : MonoBehaviour
 
     private void SpawnWood()
     {
-        float lowerLimit;
-        float upperLimit;
-
-        if (elapsedTime < 120)
-        {
-            lowerLimit = 5 + (elapsedTime / 5);
-            upperLimit = 15 + (elapsedTime / 3);
-        }
-        else
-        {
-            lowerLimit = 35;
-            upperLimit = 65;
-        }
+        float lowerLimit = 4 + totalLogsSpawned / 4;
+        float upperLimit = 7 + totalLogsSpawned / 3;
         
 
         Vector3 pos = Random.onUnitSphere;
