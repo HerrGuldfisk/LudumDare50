@@ -24,6 +24,8 @@ public class Fireplace : MonoBehaviour
     public float burningSizeFactor = 7;
     PlayerHealth playerHealth;
 
+    // public bool shouldBurn = false;
+
 
     void Start()
     {
@@ -34,6 +36,8 @@ public class Fireplace : MonoBehaviour
 
     void Update()
     {
+        // if (!shouldBurn) { return; }
+
         // Don't update if no fuel.
         if (fuel <= 0) { return; }
 

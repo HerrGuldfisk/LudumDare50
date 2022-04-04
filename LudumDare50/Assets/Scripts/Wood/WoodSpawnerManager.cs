@@ -31,16 +31,21 @@ public class WoodSpawnerManager : MonoBehaviour
 
     private void SpawnWood()
     {
-        float lowerLimit = 4 + totalLogsSpawned / 4;
-        float upperLimit = 7 + totalLogsSpawned / 3;
-        
+        StartCoroutine(SpawnDelay());
 
+        totalLogsSpawned++;
+        currentLogs++;
+    }
+
+    IEnumerator SpawnDelay()
+    {
         Vector3 pos = Random.onUnitSphere;
         pos.z = 0;
         pos = pos.normalized;
+        yield return new WaitForSeconds(Random.Range(2f, 8f));
 
+        float lowerLimit = 4 + totalLogsSpawned / 3;
+        float upperLimit = 7 + totalLogsSpawned / 2f;
         Instantiate(woodPrefab, pos * Random.Range(lowerLimit, upperLimit), Quaternion.identity, transform);
-        totalLogsSpawned++;
-        currentLogs++;
     }
 }
