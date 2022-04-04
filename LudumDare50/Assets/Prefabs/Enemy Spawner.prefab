@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a75374587ee9a4e884b3a791cc3f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelay: 4
+  spawnDelay: 2
   minDistanceFromPlayer: 10
   maxDistanceFromPlayer: 20
   EnemiesToSpawn:
