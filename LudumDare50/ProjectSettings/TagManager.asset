@@ -9,6 +9,8 @@ TagManager:
   - FireplaceDrop
   - Fire
   - HeatZone
+  - LifeMeter
+  - Projectile
   layers:
   - Default
   - TransparentFX

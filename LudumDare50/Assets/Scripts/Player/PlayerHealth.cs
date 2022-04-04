@@ -78,22 +78,7 @@ public class PlayerHealth : MonoBehaviour
         hpDeg = hpDNormal;
         CheckPlayerState();
 
-        if (currentHp <= maxHp)
-        {
-            currentHp -= hpDeg * hpRate;
-        }
-
-        if (currentHp > maxHp)
-        {
-            currentHp = maxHp;
-        }
-
-        if (currentHp < 0.1f)
-        {
-            GetComponent<PlayerWolfContact>().PlayerDeath();
-        }
-
-        barFill.SetLife(currentHp / maxHp);
+        LooseHP(hpDeg * hpRate);
 
         //outlineblink
         outline.enabled = true;
@@ -110,7 +95,21 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerDashLoss()
     {
-        currentHp -= hpDashLoss;
+        LooseHP(hpDashLoss);
+
+        //outlineblink
+        outline.enabled = true;
+        Invoke("TurnOffOutline", 0.3f);
+    }
+
+    public void LooseHP(float dmg)
+    {
+        currentHp -= dmg;
+
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
 
         if (currentHp < 0.1f)
         {
@@ -118,10 +117,6 @@ public class PlayerHealth : MonoBehaviour
         }
 
         barFill.SetLife(currentHp / maxHp);
-
-        //outlineblink
-        outline.enabled = true;
-        Invoke("TurnOffOutline", 0.3f);
     }
 
     void TurnOffOutline()
@@ -131,9 +126,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void SetPlayerMaxHP(float value)
     {
-        float currentHealthPerc = currentHp/maxHp;
+        float currentHealthPerc = currentHp / maxHp;
         maxHp = Mathf.Clamp(value, 20, 100);
-        currentHp = maxHp*currentHealthPerc;
-        bar.sizeDelta = new Vector2((maxHp/100) * barMaxWidth, bar.sizeDelta.y);
+        currentHp = maxHp * currentHealthPerc;
+        bar.sizeDelta = new Vector2((maxHp / 100) * barMaxWidth, bar.sizeDelta.y);
     }
 }

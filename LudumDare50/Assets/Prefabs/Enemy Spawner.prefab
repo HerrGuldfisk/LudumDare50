@@ -49,3 +49,4 @@ MonoBehaviour:
   EnemiesToSpawn:
   - {fileID: 8775697688513707954, guid: c2140c94737fae64187dc3e721641e07, type: 3}
   - {fileID: 8775697688513707954, guid: 37b88e5df3efd3c4384b687b22f41ccc, type: 3}
+  - {fileID: 5070929353651659133, guid: 4a3741f750499c34e8c7618075ad65ff, type: 3}
