@@ -28,6 +28,9 @@ public class Fireplace : MonoBehaviour
     PlayerHealth playerHealth;
     PlayerMovement playerMovement;
 
+    // public bool shouldBurn = false;
+
+
     void Start()
     {
         // anim.Play("Burning");
@@ -38,6 +41,8 @@ public class Fireplace : MonoBehaviour
 
     void Update()
     {
+        // if (!shouldBurn) { return; }
+
         // Don't update if no fuel.
         if (fuel <= 0) { return; }
 

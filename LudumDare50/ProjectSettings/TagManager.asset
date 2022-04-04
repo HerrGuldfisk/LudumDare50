@@ -11,6 +11,7 @@ TagManager:
   - HeatZone
   - LifeMeter
   - DashMeter
+  - Projectile
   layers:
   - Default
   - TransparentFX

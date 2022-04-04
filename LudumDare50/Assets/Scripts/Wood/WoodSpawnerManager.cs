@@ -22,7 +22,7 @@ public class WoodSpawnerManager : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
 
-        if(currentLogs < 100)
+        if(currentLogs < 105)
         {
             SpawnWood();
         }
@@ -31,27 +31,21 @@ public class WoodSpawnerManager : MonoBehaviour
 
     private void SpawnWood()
     {
-        float lowerLimit;
-        float upperLimit;
+        StartCoroutine(SpawnDelay());
 
-        if (elapsedTime < 120)
-        {
-            lowerLimit = 5 + (elapsedTime / 5);
-            upperLimit = 15 + (elapsedTime / 3);
-        }
-        else
-        {
-            lowerLimit = 35;
-            upperLimit = 65;
-        }
-        
+        totalLogsSpawned++;
+        currentLogs++;
+    }
 
+    IEnumerator SpawnDelay()
+    {
         Vector3 pos = Random.onUnitSphere;
         pos.z = 0;
         pos = pos.normalized;
+        yield return new WaitForSeconds(Random.Range(2f, 8f));
 
+        float lowerLimit = 4 + totalLogsSpawned / 3;
+        float upperLimit = 7 + totalLogsSpawned / 2f;
         Instantiate(woodPrefab, pos * Random.Range(lowerLimit, upperLimit), Quaternion.identity, transform);
-        totalLogsSpawned++;
-        currentLogs++;
     }
 }
