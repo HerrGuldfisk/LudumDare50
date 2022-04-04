@@ -7,7 +7,6 @@ public class Mole : MonoBehaviour
     [SerializeField] float viewDistance = 3.2f;
     [SerializeField] float timeBetweenThrows = 0.8f;
     [SerializeField] float projectileSpeed = 2f;
-    [SerializeField] SpriteRenderer eyes;
     [SerializeField] GameObject projectile;
     Transform player;
     bool playerInRange = false;
@@ -31,13 +30,11 @@ public class Mole : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) < viewDistance)
         {
-            eyes.color = Color.red;
             playerInRange = true;
             RotateTowards(player.position);
             return;
         }
 
-        eyes.color = Color.white;
         playerInRange = false;
     }
 
